@@ -1,0 +1,3 @@
+2024-09-03 12:12:29.606788-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]NOME_CLIENTE"; SQL statement:
+NOME_CLIENTE [42000-224]
