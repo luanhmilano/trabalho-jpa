@@ -30,4 +30,30 @@ public class ContaBancariaService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    public void depositar(Long id, float valor) { 
+        Optional<ContaBancaria> conta = repository.findById(id); 
+        if (conta.isPresent()) { 
+            ContaBancaria contaBancaria = conta.get();
+            contaBancaria.setSaldo(contaBancaria.getSaldo() + valor);
+            repository.save(contaBancaria);
+        } else {
+            throw new RuntimeException("Conta não encontrada");
+        }
+    }
+
+    public void retirar(Long id, float valor) {
+        Optional<ContaBancaria> conta = repository.findById(id);
+        if (conta.isPresent()) {
+            ContaBancaria contaBancaria = conta.get();
+            if (contaBancaria.getSaldo() >= valor) {
+                contaBancaria.setSaldo(contaBancaria.getSaldo() - valor);
+                repository.save(contaBancaria);
+            } else {
+                throw new RuntimeException("Saldo insuficiente.");
+            }
+        } else {
+            throw new RuntimeException("Conta não encontrada.");
+        }
+    }
 }

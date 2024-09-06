@@ -10,7 +10,7 @@ public class ContaBancaria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Explain this
-    private Long id;
+    private Long id; 
     private String nomeCliente;
     private float saldo;
 

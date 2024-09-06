@@ -59,4 +59,25 @@ public class ContaBancariaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/{id}/depositar")
+    public ResponseEntity<Void> depositar(@PathVariable Long id, @RequestParam float valor) {
+        try {
+            service.depositar(id, valor);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
+
+    // Endpoint para retirar
+    @PostMapping("/{id}/retirar")
+    public ResponseEntity<Void> retirar(@PathVariable Long id, @RequestParam float valor) {
+        try {
+            service.retirar(id, valor);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 }
