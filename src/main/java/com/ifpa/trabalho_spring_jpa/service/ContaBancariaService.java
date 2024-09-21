@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class ContaBancariaService {
     
-    @Autowired
+    @Autowired // explain this
     private ContaBancariaRepository repository;
 
     public List<ContaBancaria> findAll() {
@@ -31,7 +31,7 @@ public class ContaBancariaService {
         repository.deleteById(id);
     }
 
-    public void depositar(Long id, float valor) { 
+    public synchronized void depositar(Long id, float valor) { 
         Optional<ContaBancaria> conta = repository.findById(id); 
         if (conta.isPresent()) { 
             ContaBancaria contaBancaria = conta.get();
@@ -42,7 +42,7 @@ public class ContaBancariaService {
         }
     }
 
-    public void retirar(Long id, float valor) {
+    public synchronized void retirar(Long id, float valor) {
         Optional<ContaBancaria> conta = repository.findById(id);
         if (conta.isPresent()) {
             ContaBancaria contaBancaria = conta.get();
